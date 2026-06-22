@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Orbitron, Poppins } from "next/font/google";
+import { Outfit, Poppins } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { InteractiveUI } from "@/components/InteractiveUI";
 
-const fontHeading = Orbitron({
+const fontHeading = Outfit({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["400", "600", "800"],
 });
 
 const fontBody = Poppins({

@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { Particles3D } from "./Particles3D";
+import dynamic from "next/dynamic";
+
+const Particles3D = dynamic(() => import("./Particles3D").then((mod) => mod.Particles3D), { ssr: false });
 
 export function AboutMe() {
   const { t } = useLanguage();
