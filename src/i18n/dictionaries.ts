@@ -30,6 +30,21 @@ export const dictionaries = {
           title: "Casa de Maria",
           description: "Sistema robusto de gestão clínica e agendamento automatizado sob a arquitetura MVC, com autenticação rigorosa e interface dinâmica em tempo real.",
           tags: ["PHP", "Laravel", "MySQL", "MVC"],
+        },
+        {
+          title: "Genetic Algorithm N-Queens",
+          description: "Algoritmo Genético implementado em C para solucionar o clássico problema das N-Rainhas (N-Queens), focado em otimização e inteligência artificial.",
+          tags: ["C", "Genetic Algorithm", "AI"],
+        },
+        {
+          title: "Cesta Básica",
+          description: "Análise Econômica da Cesta Básica (2022–2026) empregando técnicas de Data Science, ETL e Forecasting com Power BI.",
+          tags: ["Data Analysis", "Power BI", "ETL"],
+        },
+        {
+          title: "IMRS Educação 2020",
+          description: "Análise estatística e exploratória de três indicadores educacionais IMRS 2020, utilizando a stack de dados em Python (Pandas, Seaborn).",
+          tags: ["Python", "Jupyter", "Statistics"],
         }
       ],
       links: { code: "Code", live: "Live" }
@@ -95,6 +110,21 @@ export const dictionaries = {
           title: "Casa de Maria",
           description: "A robust clinical management and automated medical scheduling system, built in PHP using the Laravel framework with an MVC architecture.",
           tags: ["PHP", "Laravel", "MySQL", "MVC"],
+        },
+        {
+          title: "Genetic Algorithm N-Queens",
+          description: "A Genetic Algorithm implemented in C to solve the classic N-Queens problem, focusing on optimization and artificial intelligence.",
+          tags: ["C", "Genetic Algorithm", "AI"],
+        },
+        {
+          title: "Cesta Básica",
+          description: "Economic Analysis of the Basic Food Basket (2022–2026) using Data Science, ETL, and Forecasting techniques with Power BI.",
+          tags: ["Data Analysis", "Power BI", "ETL"],
+        },
+        {
+          title: "IMRS Educação 2020",
+          description: "Statistical and exploratory analysis of three IMRS 2020 educational indicators, using the Python data stack (Pandas, Seaborn).",
+          tags: ["Python", "Jupyter", "Statistics"],
         }
       ],
       links: { code: "Code", live: "Live" }

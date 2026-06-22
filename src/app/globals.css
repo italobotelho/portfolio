@@ -19,6 +19,13 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Ocultar o cursor nativo no Desktop para evitar duplicação com o cursor interativo */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+}
+
 /* Glassmorphism utils */
 .glass {
   background: rgba(255, 255, 255, 0.02);

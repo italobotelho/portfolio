@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { Particles3D } from "./Particles3D";
 
 export function AboutMe() {
   const { t } = useLanguage();
@@ -39,9 +40,8 @@ export function AboutMe() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative h-[500px] w-full hidden lg:block"
         >
-          {/* Espaço para uma imagem 3D, avatar ou grafismo do usuário */}
-          <div className="absolute inset-0 glass-card flex items-center justify-center border-neon-pink/30 shadow-[0_0_50px_rgba(255,0,234,0.1)]">
-            <span className="font-heading tracking-widest text-neutral-600 uppercase">{t.about.interactive}</span>
+          <div className="absolute inset-0 glass-card flex items-center justify-center border-neon-pink/30 shadow-[0_0_50px_rgba(124,114,255,0.1)] overflow-hidden">
+            <Particles3D />
           </div>
         </motion.div>
       </div>
