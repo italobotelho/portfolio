@@ -1,7 +1,7 @@
 export const dictionaries = {
   pt: {
     hero: {
-      nav: { about: "Sobre", portfolio: "Projetos", services: "Habilidades", contact: "Contato" },
+      nav: { about: "Sobre", portfolio: "Projetos", services: "Habilidades" },
       title: ["Transformando", "Dados em Inteligência"],
       description: "Estudante de Ciência de Dados e Inteligência Artificial. Especialista em IA, análise exploratória e modelagem de dados.",
       buttons: { viewProjects: "VER PROJETOS", contact: "Contato" },
@@ -81,7 +81,7 @@ export const dictionaries = {
   },
   en: {
     hero: {
-      nav: { about: "About", portfolio: "Projects", services: "Skills", contact: "Contact" },
+      nav: { about: "About", portfolio: "Projects", services: "Skills" },
       title: ["Transforming", "Data into Intelligence"],
       description: "Data Science and Artificial Intelligence student. Specialist in AI, exploratory data analysis, and data modeling.",
       buttons: { viewProjects: "VIEW PROJECTS", contact: "Contact" },

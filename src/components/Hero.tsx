@@ -79,8 +79,8 @@ export function Hero() {
           </a>
           
           {/* Botão Secundário Alinhado */}
-          <a href="#contact" className="px-8 py-4 rounded-lg font-heading text-neutral-300 border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center justify-center gap-3">
-            Contato <Mail className="w-5 h-5" />
+          <a href="https://linkedin.com/in/italobotelho" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-lg font-heading text-neutral-300 border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center justify-center gap-3">
+            LinkedIn <Briefcase className="w-5 h-5" />
           </a>
         </motion.div>
       </main>
