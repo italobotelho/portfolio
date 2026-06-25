@@ -1,47 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Code, Star, GitFork, Database, Cpu, Activity, Layout, Terminal, Code2 } from "lucide-react";
+import { ExternalLink, Code, Database, Cpu, Activity, Layout, Code2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface GithubRepo {
-  name: string;
-  html_url: string;
-  stargazers_count: number;
-  forks_count: number;
-  language: string;
-  homepage: string | null;
-}
+const GITHUB_BASE = "https://github.com/italobotelho/";
+
+const projectLinks: Record<string, { github: string; live?: string }> = {
+  "siest": { github: `${GITHUB_BASE}siest-app`, live: "https://siest-app.vercel.app" }, // Exemplo de live, o usuário pode ajustar depois
+  "8-puzzle": { github: `${GITHUB_BASE}8-puzzle-solver-ai` },
+  "casa de maria": { github: `${GITHUB_BASE}casa-de-maria-v2` },
+  "genetic": { github: `${GITHUB_BASE}genetic-algorithm-nqueens` },
+  "cesta": { github: `${GITHUB_BASE}cesta_basica` },
+  "imrs": { github: `${GITHUB_BASE}imrs_educacao_2020` }
+};
 
 export function Portfolio() {
   const { t } = useLanguage();
-  const [repos, setRepos] = useState<Record<string, GithubRepo>>({});
 
-  useEffect(() => {
-    fetch("https://api.github.com/users/italobotelho/repos")
-      .then(res => res.json())
-      .then((data: GithubRepo[]) => {
-        if (Array.isArray(data)) {
-          const repoMap: Record<string, GithubRepo> = {};
-          data.forEach(repo => {
-            repoMap[repo.name.toLowerCase()] = repo;
-          });
-          setRepos(repoMap);
-        }
-      })
-      .catch(console.error);
-  }, []);
-
-  const getRepoMatch = (title: string) => {
+  const getProjectLinks = (title: string) => {
     const titleLower = title.toLowerCase();
-    if (titleLower.includes("siest")) return repos["siest"];
-    if (titleLower.includes("8-puzzle")) return repos["8-puzzle-solver-ai"];
-    if (titleLower.includes("casa de maria")) return repos["casa-de-maria-v2"];
-    if (titleLower.includes("genetic")) return repos["genetic-algorithm-nqueens"];
-    if (titleLower.includes("cesta")) return repos["cesta_basica"];
-    if (titleLower.includes("imrs")) return repos["imrs_educacao_2020"];
-    return null;
+    if (titleLower.includes("siest")) return projectLinks["siest"];
+    if (titleLower.includes("8-puzzle")) return projectLinks["8-puzzle"];
+    if (titleLower.includes("casa de maria")) return projectLinks["casa de maria"];
+    if (titleLower.includes("genetic")) return projectLinks["genetic"];
+    if (titleLower.includes("cesta")) return projectLinks["cesta"];
+    if (titleLower.includes("imrs")) return projectLinks["imrs"];
+    return { github: "#" };
   };
 
   // Função auxiliar para definir um ícone gigante baseado no título do projeto
@@ -72,7 +57,7 @@ export function Portfolio() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {t.portfolio.projects.map((project, index) => {
-            const githubData = getRepoMatch(project.title);
+            const links = getProjectLinks(project.title);
             
             return (
               <motion.div
@@ -110,33 +95,21 @@ export function Portfolio() {
                         {tag}
                       </span>
                     ))}
-                    {githubData?.language && !project.tags.includes(githubData.language) && (
-                      <span className="text-xs font-mono font-medium text-neon-pink bg-neon-pink/20 px-3 py-1.5 rounded-md border border-neon-pink/10 backdrop-blur-sm">
-                        {githubData.language}
-                      </span>
-                    )}
                   </div>
                 </div>
 
                 {/* Bottom content: Stats and Links */}
                 <div className="relative z-10 flex items-center justify-between pt-6 border-t border-white/10 mt-auto">
                   <div className="flex gap-4">
-                    <a href={githubData ? githubData.html_url : "#"} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-blue transition-colors group/link">
+                    <a href={links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-blue transition-colors group/link">
                       <Code className="w-4 h-4 group-hover/link:animate-pulse" /> {t.portfolio.links.code}
                     </a>
-                    {(githubData?.homepage || project.title === "SIEST") && (
-                      <a href={githubData?.homepage || "#"} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-pink transition-colors group/link">
+                    {(links.live || project.title === "SIEST") && (
+                      <a href={links.live || "#"} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-pink transition-colors group/link">
                         <ExternalLink className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" /> {t.portfolio.links.live}
                       </a>
                     )}
                   </div>
-
-                  {githubData && (
-                    <div className="flex items-center gap-4 text-neutral-400 text-xs font-mono">
-                      <span className="flex items-center gap-1"><Star className="w-4 h-4 text-yellow-500/80" /> {githubData.stargazers_count}</span>
-                      <span className="flex items-center gap-1"><GitFork className="w-4 h-4 text-neutral-500" /> {githubData.forks_count}</span>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             );
