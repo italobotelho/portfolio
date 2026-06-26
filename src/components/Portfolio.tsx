@@ -101,7 +101,7 @@ export function Portfolio() {
                   />
                   <button
                     onClick={() => setActiveIframe(null)}
-                    className="absolute top-6 right-6 z-50 p-3 bg-black/50 hover:bg-red-500/80 backdrop-blur-md rounded-full text-white transition-all border border-white/20 hover:border-red-500 hover:scale-110"
+                    className="absolute top-6 right-6 z-50 p-3 bg-red-500/20 hover:bg-red-500/80 backdrop-blur-md rounded-full text-red-100 transition-all border border-red-500/30 hover:border-red-500 hover:scale-110"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -144,16 +144,27 @@ export function Portfolio() {
                 <div className="flex items-center gap-4 mt-auto">
                   {links.live ? (
                     <button 
-                      onClick={() => !isActive && setActiveIframe(project.title)}
+                      onClick={() => {
+                        if (isActive) {
+                          window.open(links.live, '_blank');
+                          setActiveIframe(null);
+                        } else {
+                          setActiveIframe(project.title);
+                        }
+                      }}
                       className={`
-                        flex items-center justify-center gap-3 font-heading tracking-widest rounded-xl transition-all
+                        flex items-center justify-center gap-3 font-heading tracking-widest rounded-xl transition-all pointer-events-auto
                         ${isActive 
-                          ? 'hidden' 
+                          ? 'px-6 py-4 bg-white/10 text-white hover:bg-neon-blue hover:border-neon-blue hover:text-black border border-white/20 hover:scale-105' 
                           : 'px-8 py-4 bg-neon-blue text-black hover:bg-white hover:scale-105 shadow-[0_0_20px_var(--color-neon-blue)]'
                         }
                       `}
                     >
-                      <Play className="w-5 h-5 fill-current" /> LIVE PREVIEW
+                      {isActive ? (
+                        <><ExternalLink className="w-5 h-5" /> NEW TAB</>
+                      ) : (
+                        <><Play className="w-5 h-5 fill-current" /> LIVE PREVIEW</>
+                      )}
                     </button>
                   ) : (
                     <span className="px-6 py-3 bg-white/5 rounded-xl text-neutral-500 font-mono text-sm border border-white/5 cursor-not-allowed">
