@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2, Briefcase, Mail, Globe } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -12,16 +11,6 @@ const Grid3D = dynamic(() => import("./Grid3D").then((mod) => mod.Grid3D), { ssr
 
 export function Hero() {
   const { language, toggleLanguage, t } = useLanguage();
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <section className="relative w-full h-screen snap-start flex flex-col overflow-hidden">
@@ -29,11 +18,7 @@ export function Hero() {
       <Grid3D />
 
       {/* Navigation - Glassmorphism Header */}
-      <header className={`fixed top-0 z-50 w-full flex items-center justify-between p-6 lg:px-12 transition-all duration-500 ${
-        isScrolled 
-          ? "bg-[#0d1117]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]" 
-          : "bg-transparent border-b border-transparent"
-      }`}>
+      <header className="absolute top-0 z-50 w-full flex items-center justify-between p-6 lg:px-12 bg-[#0d1117]/30 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center gap-2">
           <span className="font-heading text-2xl font-bold tracking-tighter text-white">
             &lt;ÍTALO/&gt;
