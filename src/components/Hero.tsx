@@ -42,7 +42,7 @@ export function Hero() {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 flex flex-col justify-center px-6 pt-24 pb-32 max-w-7xl mx-auto w-full">
+      <main className="relative z-10 flex-1 flex flex-col justify-center px-6 mt-20 pb-8 max-w-7xl mx-auto w-full">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0d1117] opacity-80 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -96,7 +96,7 @@ export function Hero() {
       <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-8 right-8 z-20 text-neutral-500 text-sm font-mono flex items-center gap-2 hidden md:flex"
+        className="absolute bottom-8 right-6 lg:right-12 z-20 text-neutral-500 text-sm font-mono flex items-center gap-2 hidden md:flex"
       >
         {t.hero.scroll}
       </motion.div>
