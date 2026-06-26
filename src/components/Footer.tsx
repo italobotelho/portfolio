@@ -29,7 +29,7 @@ export function Footer() {
           <FaLinkedin className="w-6 h-6" />
         </a>
         <a 
-          href="mailto:italofbotelho@gmail.com" 
+          href="mailto:fragabotelhoitalo@gmail.com" 
           className="text-neutral-500 hover:text-neon-blue transition-colors"
           aria-label="Email"
         >
