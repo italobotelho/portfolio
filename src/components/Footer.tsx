@@ -1,7 +1,8 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -16,7 +17,7 @@ export function Footer() {
           className="text-neutral-500 hover:text-neon-blue transition-colors"
           aria-label="GitHub"
         >
-          <Github className="w-6 h-6" />
+          <FaGithub className="w-6 h-6" />
         </a>
         <a 
           href="https://www.linkedin.com/in/italobotelho/" 
@@ -25,7 +26,7 @@ export function Footer() {
           className="text-neutral-500 hover:text-neon-blue transition-colors"
           aria-label="LinkedIn"
         >
-          <Linkedin className="w-6 h-6" />
+          <FaLinkedin className="w-6 h-6" />
         </a>
         <a 
           href="mailto:italofbotelho@gmail.com" 
