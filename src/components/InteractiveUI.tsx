@@ -60,12 +60,12 @@ export function InteractiveUI() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-neon-pink origin-left z-50 shadow-[0_0_10px_var(--color-neon-pink)]"
+        className="fixed top-0 left-0 right-0 h-1 bg-neon-pink origin-left z-[9999] shadow-[0_0_10px_var(--color-neon-pink)]"
         style={{ scaleX }}
       />
 
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-neon-blue pointer-events-none z-50 mix-blend-screen hidden md:block"
+        className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-neon-blue pointer-events-none z-[9999] mix-blend-screen hidden md:block"
         style={{
           x: cursorX,
           y: cursorY,
@@ -79,7 +79,7 @@ export function InteractiveUI() {
         transition={{ scale: { type: "spring", stiffness: 500, damping: 28 }, backgroundColor: { duration: 0.2 } }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-neon-pink rounded-full pointer-events-none z-50 hidden md:block"
+        className="fixed top-0 left-0 w-2 h-2 bg-neon-pink rounded-full pointer-events-none z-[9999] hidden md:block"
         style={{
           x: dotX,
           y: dotY,
