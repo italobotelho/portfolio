@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Poppins } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { InteractiveUI } from "@/components/InteractiveUI";
 
@@ -46,6 +47,7 @@ export default function RootLayout({
         <LanguageProvider>
           <InteractiveUI />
           {children}
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
