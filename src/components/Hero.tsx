@@ -13,16 +13,16 @@ export function Hero() {
   const { language, toggleLanguage, t } = useLanguage();
 
   return (
-    <section className="relative w-full h-screen snap-start flex flex-col overflow-hidden">
+    <section className="relative w-full min-h-screen snap-start flex flex-col overflow-hidden">
       {/* Background Cyberpunk 3D Grid */}
       <Grid3D />
 
       {/* Navigation - Glassmorphism Header */}
       <header className="absolute top-0 z-50 w-full flex items-center justify-between p-6 lg:px-12 bg-[#0d1117]/30 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center gap-2">
-          <span className="font-heading text-2xl font-bold tracking-tighter text-white">
+          <a href="https://github.com/italobotelho" target="_blank" rel="noreferrer" className="font-heading text-2xl font-bold tracking-tighter text-white hover:text-neon-blue hover:text-glow-blue transition-all">
             &lt;ÍTALO/&gt;
-          </span>
+          </a>
         </div>
         
         <nav className="hidden md:flex items-center gap-8 bg-[#0d1117]/50 px-6 py-2 rounded-full border border-white/10 backdrop-blur-md">
@@ -42,7 +42,7 @@ export function Hero() {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 flex flex-col justify-center px-6 mt-20 max-w-7xl mx-auto w-full">
+      <main className="relative z-10 flex-1 flex flex-col justify-center px-6 pt-24 pb-32 max-w-7xl mx-auto w-full">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0d1117] opacity-80 blur-[120px] rounded-full pointer-events-none -z-10" />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -90,15 +90,7 @@ export function Hero() {
         </div>
       </main>
 
-      {/* Fixed Social Links at Bottom Left */}
-      <div className="absolute bottom-8 left-8 z-20 flex gap-4 hidden md:flex">
-        <a href="https://github.com/italobotelho" target="_blank" rel="noreferrer" className="p-3 bg-white/5 backdrop-blur-md rounded-full text-neutral-400 hover:text-neon-blue border border-white/10 hover:border-neon-blue/50 transition-all group">
-          <Code2 className="w-5 h-5 group-hover:scale-110 transition-transform" />
-        </a>
-        <a href="https://linkedin.com/in/italobotelho" target="_blank" rel="noreferrer" className="p-3 bg-white/5 backdrop-blur-md rounded-full text-neutral-400 hover:text-neon-pink border border-white/10 hover:border-neon-pink/50 transition-all group">
-          <Briefcase className="w-5 h-5 group-hover:scale-110 transition-transform" />
-        </a>
-      </div>
+
 
       {/* Scroll Indicator */}
       <motion.div 
