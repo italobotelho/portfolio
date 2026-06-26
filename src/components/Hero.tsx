@@ -106,7 +106,7 @@ export function Hero() {
         transition={{ repeat: Infinity, duration: 2 }}
         className="absolute bottom-8 right-8 z-20 text-neutral-500 text-sm font-mono flex items-center gap-2 hidden md:flex"
       >
-        Scroll para explorar &darr;
+        {t.hero.scroll}
       </motion.div>
     </section>
   );

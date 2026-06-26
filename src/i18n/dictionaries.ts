@@ -47,7 +47,8 @@ export const dictionaries = {
           tags: ["Python", "Jupyter", "Statistics"],
         }
       ],
-      links: { code: "Code", live: "Live" }
+      links: { code: "Código", live: "Live" },
+      scroll: "Role para baixo para explorar a experiência imersiva."
     },
     services: {
       title: ["MINHAS", "HABILIDADES"],
@@ -127,7 +128,8 @@ export const dictionaries = {
           tags: ["Python", "Jupyter", "Statistics"],
         }
       ],
-      links: { code: "Code", live: "Live" }
+      links: { code: "Code", live: "Live" },
+      scroll: "Scroll down to explore the immersive experience."
     },
     services: {
       title: ["MY", "SKILLS"],

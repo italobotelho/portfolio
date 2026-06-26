@@ -59,7 +59,7 @@ export function Portfolio() {
             {t.portfolio.title}
           </h2>
           <p className="text-xl text-neutral-400 font-light tracking-wide">
-            Scroll down to explore the immersive experience.
+            {t.portfolio.scroll}
           </p>
         </motion.div>
       </section>
