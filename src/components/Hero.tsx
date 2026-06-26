@@ -18,7 +18,7 @@ export function Hero() {
       <Grid3D />
 
       {/* Navigation - Glassmorphism Header */}
-      <header className="absolute top-0 z-20 w-full flex items-center justify-between p-6 lg:px-12 bg-[#0d1117]/30 backdrop-blur-md border-b border-white/5">
+      <header className="fixed top-0 z-50 w-full flex items-center justify-between p-6 lg:px-12 bg-[#0d1117]/30 backdrop-blur-md border-b border-white/5">
         <div className="flex items-center gap-2">
           <span className="font-heading text-2xl font-bold tracking-tighter text-white">
             &lt;ÍTALO/&gt;
