@@ -18,7 +18,7 @@ export function Services() {
   };
 
   return (
-    <section id="services" className="py-24 px-6 lg:px-12 relative overflow-hidden">
+    <section id="services" className="h-screen w-full snap-start flex items-center justify-center py-24 px-6 lg:px-12 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute left-0 bottom-1/4 w-[500px] h-[500px] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
 
