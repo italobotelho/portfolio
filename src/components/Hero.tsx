@@ -13,7 +13,7 @@ export function Hero() {
   const { language, toggleLanguage, t } = useLanguage();
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col overflow-hidden">
+    <section className="relative w-full h-screen snap-start flex flex-col overflow-hidden">
       {/* Background Cyberpunk 3D Grid */}
       <Grid3D />
 
@@ -42,47 +42,52 @@ export function Hero() {
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 text-center mt-20">
-        
-        {/* Máscara de sombra radial para melhorar a legibilidade sobre o Grid 3D */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0d1117] opacity-60 blur-[100px] rounded-full pointer-events-none -z-10" />
+      <main className="relative z-10 flex-1 flex flex-col justify-center px-6 mt-20 max-w-7xl mx-auto w-full">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#0d1117] opacity-80 blur-[120px] rounded-full pointer-events-none -z-10" />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-5xl"
-        >
-          {/* Título com line-height ajustado e glow text */}
-          <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.1] md:leading-[1.1]">
-            <span className="text-white block mb-2">{t.hero.title[0]}</span>
-            <span className="text-neon-blue text-glow-blue block">{t.hero.title[1]}</span>
-          </h1>
-          
-          {/* Subtítulo mais legível */}
-          <p className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
-            {t.hero.description}
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column: Title & Intro */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.1]">
+              <span className="text-white block mb-2">{t.hero.title[0]}</span>
+              <span className="text-neon-blue text-glow-blue block">{t.hero.title[1]}</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-neutral-300 mb-8 font-light leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.intro }} />
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-6"
-        >
-          {/* Botão Primário Estilo Neon Glass */}
-          <a href="#portfolio" className="group relative px-8 py-4 bg-[#0d1117]/80 backdrop-blur-md rounded-lg font-heading text-white tracking-widest border border-neon-blue/50 hover:border-neon-blue transition-all overflow-hidden flex items-center justify-center">
-            <div className="absolute inset-0 bg-neon-blue/10 group-hover:bg-neon-blue/20 transition-colors" />
-            <div className="absolute -inset-2 bg-neon-blue/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-            <span className="relative z-10 group-hover:text-glow-blue transition-all">VER PROJETOS</span>
-          </a>
-          
-          {/* Botão Secundário Alinhado */}
-          <a href="https://linkedin.com/in/italobotelho" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-lg font-heading text-neutral-300 border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center justify-center gap-3">
-            LinkedIn <Briefcase className="w-5 h-5" />
-          </a>
-        </motion.div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+              <a href="#portfolio" className="group relative px-8 py-4 bg-[#0d1117]/80 backdrop-blur-md rounded-lg font-heading text-white tracking-widest border border-neon-blue/50 hover:border-neon-blue transition-all overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 bg-neon-blue/10 group-hover:bg-neon-blue/20 transition-colors" />
+                <div className="absolute -inset-2 bg-neon-blue/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="relative z-10 group-hover:text-glow-blue transition-all">VER PROJETOS</span>
+              </a>
+              
+              <a href="https://linkedin.com/in/italobotelho" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-lg font-heading text-neutral-300 border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center justify-center gap-3">
+                LinkedIn <Briefcase className="w-5 h-5" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right Column: About Details */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="hidden lg:block glass p-8 rounded-2xl relative border border-white/10 bg-[#0d1117]/40 backdrop-blur-xl"
+          >
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-neon-pink to-transparent rounded-l-2xl" />
+            <h2 className="font-heading text-2xl font-bold mb-4 text-white">
+              <span className="text-neon-pink text-glow-pink">{"//"}</span> {t.about.title}
+            </h2>
+            <p className="text-neutral-400 text-base leading-relaxed">
+              {t.about.body}
+            </p>
+          </motion.div>
+        </div>
       </main>
 
       {/* Fixed Social Links at Bottom Left */}

@@ -1,13 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink, Code, Database, Cpu, Activity, Layout, Code2 } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Code, Database, Cpu, Activity, Layout, Code2, X, Play } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 
 const GITHUB_BASE = "https://github.com/italobotelho/";
 
 const projectLinks: Record<string, { github: string; live?: string }> = {
-  "siest": { github: `${GITHUB_BASE}siest-app`, live: "https://siest-app.vercel.app" }, // Exemplo de live, o usuário pode ajustar depois
+  "siest": { github: `${GITHUB_BASE}siest-app`, live: "https://siest-app.vercel.app" },
   "8-puzzle": { github: `${GITHUB_BASE}8-puzzle-solver-ai` },
   "casa de maria": { github: `${GITHUB_BASE}casa-de-maria-v2` },
   "genetic": { github: `${GITHUB_BASE}genetic-algorithm-nqueens` },
@@ -17,6 +18,7 @@ const projectLinks: Record<string, { github: string; live?: string }> = {
 
 export function Portfolio() {
   const { t } = useLanguage();
+  const [activeIframe, setActiveIframe] = useState<string | null>(null);
 
   const getProjectLinks = (title: string) => {
     const titleLower = title.toLowerCase();
@@ -29,93 +31,150 @@ export function Portfolio() {
     return { github: "#" };
   };
 
-  // Função auxiliar para definir um ícone gigante baseado no título do projeto
   const getWatermarkIcon = (title: string) => {
     const titleLower = title.toLowerCase();
-    if (titleLower.includes("siest")) return <Activity className="w-full h-full text-neon-blue" strokeWidth={1} />;
-    if (titleLower.includes("casa")) return <Layout className="w-full h-full text-neon-pink" strokeWidth={1} />;
-    if (titleLower.includes("genetic") || titleLower.includes("puzzle")) return <Cpu className="w-full h-full text-neon-blue" strokeWidth={1} />;
-    if (titleLower.includes("cesta") || titleLower.includes("imrs")) return <Database className="w-full h-full text-neon-pink" strokeWidth={1} />;
-    return <Code2 className="w-full h-full text-white" strokeWidth={1} />;
+    if (titleLower.includes("siest")) return <Activity className="w-full h-full text-neon-blue" strokeWidth={0.5} />;
+    if (titleLower.includes("casa")) return <Layout className="w-full h-full text-neon-pink" strokeWidth={0.5} />;
+    if (titleLower.includes("genetic") || titleLower.includes("puzzle")) return <Cpu className="w-full h-full text-neon-blue" strokeWidth={0.5} />;
+    if (titleLower.includes("cesta") || titleLower.includes("imrs")) return <Database className="w-full h-full text-neon-pink" strokeWidth={0.5} />;
+    return <Code2 className="w-full h-full text-white" strokeWidth={0.5} />;
   };
 
   return (
-    <section id="portfolio" className="min-h-screen w-full py-20 px-6 lg:px-12 relative">
-      <div className="max-w-7xl mx-auto">
+    <div id="portfolio" className="w-full">
+      {/* Introduction Screen for Portfolio */}
+      <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden bg-[#050505]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] to-black opacity-80" />
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neon-blue/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-neon-pink/10 rounded-full blur-[120px] pointer-events-none" />
+        
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="relative z-10 text-center px-6"
         >
-          <h2 className="font-heading text-4xl md:text-5xl font-bold inline-block relative">
+          <h2 className="font-heading text-5xl md:text-7xl font-bold mb-6 text-white tracking-tighter">
             {t.portfolio.title}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-neon-blue shadow-[0_0_10px_var(--color-neon-blue)] rounded-full" />
           </h2>
+          <p className="text-xl text-neutral-400 font-light tracking-wide">
+            Scroll down to explore the immersive experience.
+          </p>
         </motion.div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {t.portfolio.projects.map((project, index) => {
-            const links = getProjectLinks(project.title);
-            
-            return (
+      {/* Full Screen Projects */}
+      {t.portfolio.projects.map((project, index) => {
+        const links = getProjectLinks(project.title);
+        const isActive = activeIframe === project.title;
+        const isEven = index % 2 === 0;
+
+        return (
+          <section
+            key={project.title}
+            className="h-screen w-full snap-start relative flex items-center overflow-hidden bg-black"
+          >
+            {/* Dynamic Background generated by CSS (Fallback when iframe is not active) */}
+            <div className="absolute inset-0 z-0">
+              <div className={`absolute inset-0 bg-gradient-to-br ${isEven ? 'from-neon-blue/5 to-black' : 'from-neon-pink/5 to-black'} opacity-50`} />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-10 pointer-events-none transform -rotate-12">
+                {getWatermarkIcon(project.title)}
+              </div>
+            </div>
+
+            {/* Interactive Iframe */}
+            <AnimatePresence>
+              {isActive && links.live && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10 bg-black"
+                >
+                  <iframe 
+                    src={links.live} 
+                    className="w-full h-full border-none"
+                    title={project.title}
+                    sandbox="allow-scripts allow-same-origin allow-popups"
+                  />
+                  <button
+                    onClick={() => setActiveIframe(null)}
+                    className="absolute top-6 right-6 z-50 p-3 bg-black/50 hover:bg-red-500/80 backdrop-blur-md rounded-full text-white transition-all border border-white/20 hover:border-red-500 hover:scale-110"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Content Panel (Glassmorphism) */}
+            <div className={`relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-12 flex ${isActive ? 'items-end pb-12 pointer-events-none' : 'items-center'} transition-all duration-700 h-full`}>
               <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ y: -10 }}
-                className="glass-card group flex flex-col justify-between p-8 relative overflow-hidden border border-white/5 hover:border-neon-blue/30 transition-all duration-500 min-h-[400px]"
+                transition={{ duration: 0.8 }}
+                className={`
+                  glass p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl backdrop-blur-xl 
+                  transition-all duration-700 
+                  ${isActive 
+                    ? 'max-w-xl bg-black/40 hover:bg-black/80 pointer-events-auto transform scale-90 origin-bottom-left' 
+                    : 'max-w-2xl bg-[#0a0a0a]/60'
+                  }
+                `}
               >
-                {/* Background Glow Effect */}
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-neon-blue/10 rounded-full blur-[80px] group-hover:bg-neon-pink/20 transition-colors duration-700 pointer-events-none" />
+                <h3 className="font-heading text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+                  {project.title}
+                </h3>
                 
-                {/* Watermark Icon */}
-                <div className="absolute -top-10 -right-10 w-48 h-48 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 pointer-events-none transform rotate-12 group-hover:rotate-0">
-                  {getWatermarkIcon(project.title)}
-                </div>
-                
-                <div className="relative z-10 flex-1 flex flex-col">
-                  {/* Top content: Title and Description */}
-                  <div className="mb-6">
-                    <h3 className="font-heading text-2xl font-semibold text-white tracking-wide mb-4 leading-snug group-hover:text-neon-blue transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-neutral-400 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
-                  
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-8 mt-auto">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="text-xs font-mono font-medium text-neon-blue bg-neon-blue/20 px-3 py-1.5 rounded-md border border-neon-blue/10 backdrop-blur-sm">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <p className={`text-neutral-300 leading-relaxed mb-8 ${isActive ? 'line-clamp-2 text-sm' : 'text-lg'}`}>
+                  {project.description}
+                </p>
+
+                <div className={`flex flex-wrap gap-2 mb-8 ${isActive ? 'hidden' : 'flex'}`}>
+                  {project.tags.map(tag => (
+                    <span key={tag} className="text-sm font-mono font-medium text-neon-blue bg-neon-blue/10 px-4 py-2 rounded-lg border border-neon-blue/20">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
 
-                {/* Bottom content: Stats and Links */}
-                <div className="relative z-10 flex items-center justify-between pt-6 border-t border-white/10 mt-auto">
-                  <div className="flex gap-4">
-                    <a href={links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-blue transition-colors group/link">
-                      <Code className="w-4 h-4 group-hover/link:animate-pulse" /> {t.portfolio.links.code}
-                    </a>
-                    {(links.live || project.title === "SIEST") && (
-                      <a href={links.live || "#"} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-medium text-neutral-300 hover:text-neon-pink transition-colors group/link">
-                        <ExternalLink className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" /> {t.portfolio.links.live}
-                      </a>
-                    )}
-                  </div>
+                <div className="flex items-center gap-4 mt-auto">
+                  {links.live ? (
+                    <button 
+                      onClick={() => !isActive && setActiveIframe(project.title)}
+                      className={`
+                        flex items-center justify-center gap-3 font-heading tracking-widest rounded-xl transition-all
+                        ${isActive 
+                          ? 'hidden' 
+                          : 'px-8 py-4 bg-neon-blue text-black hover:bg-white hover:scale-105 shadow-[0_0_20px_var(--color-neon-blue)]'
+                        }
+                      `}
+                    >
+                      <Play className="w-5 h-5 fill-current" /> LIVE PREVIEW
+                    </button>
+                  ) : (
+                    <span className="px-6 py-3 bg-white/5 rounded-xl text-neutral-500 font-mono text-sm border border-white/5 cursor-not-allowed">
+                      Live coming soon
+                    </span>
+                  )}
+                  
+                  <a 
+                    href={links.github} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className={`flex items-center gap-2 px-6 py-4 rounded-xl font-heading text-white border border-white/10 hover:border-white/40 hover:bg-white/5 transition-all ${isActive && 'pointer-events-auto'}`}
+                  >
+                    <Code className="w-5 h-5" /> GITHUB
+                  </a>
                 </div>
               </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+            </div>
+          </section>
+        );
+      })}
+    </div>
   );
 }

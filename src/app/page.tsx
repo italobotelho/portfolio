@@ -1,13 +1,11 @@
 import { Hero } from "@/components/Hero";
-import { AboutMe } from "@/components/AboutMe";
 import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="h-screen w-full snap-y snap-mandatory overflow-y-auto overflow-x-hidden scroll-smooth">
       <Hero />
-      <AboutMe />
       <Portfolio />
       <Services />
     </main>
