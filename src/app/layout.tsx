@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${fontHeading.variable} ${fontBody.variable} h-full antialiased dark`}
+      className={`${fontHeading.variable} ${fontBody.variable} h-full antialiased dark snap-y snap-mandatory scroll-smooth`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans bg-black text-white" suppressHydrationWarning>

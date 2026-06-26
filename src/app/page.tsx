@@ -5,7 +5,7 @@ import { BackToTop } from "@/components/BackToTop";
 
 export default function Home() {
   return (
-    <main className="h-screen w-full snap-y snap-mandatory overflow-y-auto overflow-x-hidden scroll-smooth relative">
+    <main className="w-full">
       <Hero />
       <Services />
       <Portfolio />

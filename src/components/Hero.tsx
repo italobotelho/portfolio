@@ -15,15 +15,12 @@ export function Hero() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const mainElement = document.querySelector("main");
-    if (!mainElement) return;
-
     const handleScroll = () => {
-      setIsScrolled(mainElement.scrollTop > 50);
+      setIsScrolled(window.scrollY > 50);
     };
 
-    mainElement.addEventListener("scroll", handleScroll);
-    return () => mainElement.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
