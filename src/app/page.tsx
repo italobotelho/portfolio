@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <main className="h-screen w-full snap-y snap-mandatory overflow-y-auto overflow-x-hidden scroll-smooth">
       <Hero />
-      <Portfolio />
       <Services />
+      <Portfolio />
     </main>
   );
 }
