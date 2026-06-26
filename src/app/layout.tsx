@@ -17,6 +17,7 @@ const fontBody = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://italobotelho.vercel.app/"),
   title: "Ítalo Fraga Botelho | Data Science & AI Portfolio",
   description: "Portfolio de Ítalo Fraga Botelho. Estudante de Ciência de Dados e Inteligência Artificial na PUC-Campinas. Especialista em modelagem de dados, algoritmos de IA e desenvolvimento web moderno.",
   keywords: ["Data Science", "Artificial Intelligence", "Python", "SQL", "Desenvolvedor", "Machine Learning", "Portfolio"],
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ítalo Fraga Botelho | Portfolio",
     description: "Data Science and Artificial Intelligence student. Specialist in AI, exploratory data analysis, and data modeling.",
+    url: "https://italobotelho.vercel.app/",
     type: "website",
     locale: "pt_BR",
   },
