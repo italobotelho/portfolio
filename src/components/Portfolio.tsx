@@ -9,7 +9,7 @@ const GITHUB_BASE = "https://github.com/italobotelho/";
 
 const projectLinks: Record<string, { github: string; live?: string }> = {
   "siest": { github: `${GITHUB_BASE}siest-app`, live: "https://siest-app.vercel.app" },
-  "8-puzzle": { github: `${GITHUB_BASE}8-puzzle-solver-ai` },
+  "8-puzzle": { github: `${GITHUB_BASE}8-puzzle-solver-ai`, live: "https://italobotelho.github.io/8-puzzle-solver-ai/" },
   "casa de maria": { github: `${GITHUB_BASE}casa-de-maria-v2` },
   "genetic": { github: `${GITHUB_BASE}genetic-algorithm-nqueens` },
   "cesta": { github: `${GITHUB_BASE}cesta_basica` },

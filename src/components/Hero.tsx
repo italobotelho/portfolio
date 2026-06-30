@@ -63,7 +63,7 @@ export function Hero() {
               <a href="#portfolio" className="group relative px-8 py-4 bg-[#0d1117]/80 backdrop-blur-md rounded-lg font-heading text-white tracking-widest border border-neon-blue/50 hover:border-neon-blue transition-all overflow-hidden flex items-center justify-center">
                 <div className="absolute inset-0 bg-neon-blue/10 group-hover:bg-neon-blue/20 transition-colors" />
                 <div className="absolute -inset-2 bg-neon-blue/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <span className="relative z-10 group-hover:text-glow-blue transition-all">VER PROJETOS</span>
+                <span className="relative z-10 group-hover:text-glow-blue transition-all">{t.hero.buttons.viewProjects}</span>
               </a>
               
               <a href="https://linkedin.com/in/italobotelho" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-lg font-heading text-neutral-300 border border-white/10 hover:border-white/30 hover:text-white transition-all flex items-center justify-center gap-3">
