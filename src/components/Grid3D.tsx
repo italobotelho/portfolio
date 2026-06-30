@@ -70,7 +70,7 @@ function MovingEnvironment() {
 export function Grid3D() {
   return (
     <div className="absolute inset-0 w-full h-full mix-blend-screen pointer-events-none overflow-hidden z-0">
-      <Canvas camera={{ position: [0, 1, 5], fov: 60 }}>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 1, 5], fov: 60 }}>
         <fog attach="fog" args={['#0d1117', 5, 25]} />
         <MovingEnvironment />
       </Canvas>

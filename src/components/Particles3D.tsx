@@ -61,7 +61,7 @@ function ParticleCloud() {
 export function Particles3D() {
   return (
     <div className="absolute inset-0 w-full h-full mix-blend-screen pointer-events-auto">
-      <Canvas camera={{ position: [0, 0, 3] }}>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 3] }}>
         <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.8} />
         <ParticleCloud />
       </Canvas>
